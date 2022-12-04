@@ -9,11 +9,8 @@ from PIL import Image
 
 # dataset from https://www.kaggle.com/datasets/iarunava/cell-images-for-detecting-malaria
 
-
 np.random.seed(1000)
 os.environ['KERAS_BACKEND'] = 'tensorflow'
-
-
 image_directory = 'cell_images/'
 EPOCHS = 20
 SIZE = 64
@@ -96,6 +93,9 @@ print(f"y_train: {len(y_train)}")
 print(f"y_test: {len(y_test)}")
 
 
+#####################################
+# Train the model
+#
 
 history = model.fit(
     np.array(X_train),
@@ -106,7 +106,8 @@ history = model.fit(
     shuffle=False)
 
 
-print("Test_Accuracy: {:.2f}%".format(model.evaluate(np.array(X_test), np.array(y_test))[1]*100))
+print("Test_Accuracy: {:.2f}%".format(
+    model.evaluate(np.array(X_test), np.array(y_test))[1]*100))
 
 f, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))
 t = f.suptitle('CNN Performance', fontsize=12)
